@@ -1,0 +1,63 @@
+/* Pure JavaFX Cyber-Arcade Theme Stylesheet */
+.root {
+    -fx-background-color: #0b0a18;
+    -fx-font-family: "Consolas", "Lucida Console", monospace;
+}
+
+.arcade-button {
+    -fx-background-color: linear-gradient(to bottom, #1e2a4a, #10172b);
+    -fx-text-fill: #64f4ff;
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 24 10 24;
+    -fx-border-color: #3be8ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.arcade-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2a3f6e, #182544);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ff5ef7;
+}
+
+.arcade-button:pressed {
+    -fx-background-color: #0c1222;
+}
+
+.ability-button {
+    -fx-background-color: linear-gradient(to bottom, #1b2845, #10182b);
+    -fx-text-fill: #e2f6ff;
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 12 6 12;
+    -fx-border-color: #38d9ff;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.ability-button:hover {
+    -fx-border-color: #ffd166;
+    -fx-text-fill: #ffffff;
+}
+
+.upgrade-card {
+    -fx-background-color: linear-gradient(to bottom, #1b1934, #100e22);
+    -fx-border-color: #5ce1e6;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 14;
+    -fx-cursor: hand;
+}
+
+.upgrade-card:hover {
+    -fx-background-color: linear-gradient(to bottom, #282452, #181436);
+    -fx-border-color: #ffd166;
+}
