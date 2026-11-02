@@ -11,10 +11,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Manages background worker threads and JavaFX {@link Task} execution for asynchronous
- * asset preloading and concurrent timer tasks (satisfying SE233 multithreading skills).
- */
+
 public class AsyncTaskManager {
 
     private static final AtomicInteger THREAD_SEQ = new AtomicInteger(1);

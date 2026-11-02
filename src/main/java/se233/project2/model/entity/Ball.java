@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-/**
- * Ball entity supporting continuous 2D bouncing, separated move vs. bounce animation states,
- * piercing/pass-through mode, and speed scaling (including the 0.5x Slow Motion modifier).
- */
+
 public class Ball extends GameObject implements Movable, Collidable {
 
     public enum AnimationAction {
@@ -99,7 +96,7 @@ public class Ball extends GameObject implements Movable, Collidable {
     }
 
     @Override
-    public void update(double deltaTime) {
+    public void update(double deltaTime) {//switch back to moving
         animationTime += deltaTime;
 
         if (bounceActionTimer > 0.0) {

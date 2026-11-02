@@ -14,10 +14,7 @@ import se233.project2.view.AssetManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for custom exception classes and centralized single-place handling
- * in {@link GlobalExceptionHandler} (Rubric: Exception Handling - 1 point).
- */
+
 class ExceptionHandlingTest {
 
     @BeforeEach

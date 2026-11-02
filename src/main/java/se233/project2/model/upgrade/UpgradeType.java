@@ -1,8 +1,8 @@
 package se233.project2.model.upgrade;
 
-/**
- * Enumeration of roguelike upgrades presented between stages.
- */
+
+  //Enumeration of upgrades presented between stages.
+
 public enum UpgradeType {
     PADDLE_SIZE,
     PADDLE_SPEED,

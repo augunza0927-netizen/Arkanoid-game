@@ -1,9 +1,5 @@
 package se233.project2.model.effect;
 
-/**
- * Visual shatter/explosion animation spawned when a brick is destroyed.
- * Satisfies the "Additional animation" rubric item.
- */
 public class BrickDestroyEffect extends VisualEffect {
 
     private final int colorColumn;

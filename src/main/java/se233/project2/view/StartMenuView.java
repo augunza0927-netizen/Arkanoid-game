@@ -14,9 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import se233.project2.util.GameConfig;
 
-/**
- * Pure JavaFX Start Menu screen (Use Case 3.1: Start Game).
- */
+
 public class StartMenuView extends StackPane {
 
     private final Button startButton = new Button("▶  START NEW RUN");
@@ -80,14 +78,14 @@ public class StartMenuView extends StackPane {
         controlsBody.setTextAlignment(TextAlignment.CENTER);
         controlsBox.getChildren().addAll(controlsHeader, controlsBody);
 
-        // Buttons
+        //Buttons
         startButton.getStyleClass().add("arcade-button");
         startButton.setPrefWidth(280);
         startButton.setStyle("-fx-font-size: 18px;");
 
         HBox secondaryBtns = new HBox(14);
         secondaryBtns.setAlignment(Pos.CENTER);
-        soundButton.getStyleClass().add("arcade-button");
+        soundButton.getStyleClass().add("arcade-button");//Button sound
         exitButton.getStyleClass().add("arcade-button");
         soundButton.setPrefWidth(155);
         exitButton.setPrefWidth(155);

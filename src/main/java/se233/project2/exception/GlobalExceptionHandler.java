@@ -7,10 +7,7 @@ import se233.project2.util.GameLogger;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-/**
- * Centralized single-point exception handler for the entire application.
- * Handles all exceptions of the same type in one unified location (satisfying SE233 rubric).
- */
+
 public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     private static final AtomicInteger HANDLED_COUNT = new AtomicInteger(0);
@@ -22,9 +19,7 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
         handle(throwable);
     }
 
-    /**
-     * Single unified place handling each exception category consistently across the game.
-     */
+    //categorizes exception
     public static void handle(Throwable throwable) {
         if (throwable == null) {
             return;

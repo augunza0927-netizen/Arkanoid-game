@@ -15,10 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Manages the pool of roguelike upgrades, draws random distinct upgrade choices upon
- * stage completion, and applies the player's selected upgrade to {@link GameState}.
- */
+
 public class UpgradeManager {
 
     private List<Upgrade> createFullPool() {
@@ -32,6 +29,7 @@ public class UpgradeManager {
         return pool;
     }
 
+    //Shuffle 3 cards from 6
     public List<Upgrade> getRandomChoices(int count) {
         if (count <= 0) {
             throw new InvalidGameStateException("Requested upgrade choice count must be positive: " + count);
@@ -42,6 +40,7 @@ public class UpgradeManager {
         return new ArrayList<>(pool.subList(0, limit));
     }
 
+    //apply upgrade
     public void applyUpgrade(Upgrade selectedUpgrade, GameState state) {
         if (selectedUpgrade == null) {
             throw new InvalidGameStateException("Selected upgrade must not be null");

@@ -27,11 +27,7 @@ import se233.project2.view.UpgradeSelectionView;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Primary controller orchestrating the JavaFX {@link AnimationTimer} game loop,
- * stage transitions, lose-life/game-over checks, Slow Motion & Dual Laser abilities,
- * multithreaded background tasks, and communication between Model and View.
- */
+
 public class GameController {
 
     private final GameState gameState;
@@ -101,7 +97,7 @@ public class GameController {
         }
 
         runStartupDiagnosticsTask();
-    }
+    }//executor service
 
     private void runStartupDiagnosticsTask() {
         Task<String> warmupTask = new Task<>() {
@@ -134,13 +130,13 @@ public class GameController {
                     }
                     double deltaTime = (now - lastFrameNanos) / 1_000_000_000.0;
                     lastFrameNanos = now;
-                    // Clamp maximum frame step so window drags never cause physics tunneling
+                    //Limit max frame so no crash
                     deltaTime = Math.min(0.045, Math.max(0.0, deltaTime));
 
                     updateFrame(deltaTime);
                     renderViews();
                 } catch (Throwable t) {
-                    GlobalExceptionHandler.handle(t);
+                    GlobalExceptionHandler.handle(t);//exception
                 }
             }
         };
@@ -148,8 +144,9 @@ public class GameController {
         gameLoop.start();
     }
 
+    //Start new game
     public void startNewGame() {
-        GameLogger.logGameEvent("=== Starting New Arkanoid Roguelike Run ===");
+        GameLogger.logGameEvent(" Starting New Arkanoid Roguelike Run ");
         inputHandler.clear();
         gameState.resetForNewRun();
 
@@ -232,9 +229,7 @@ public class GameController {
         GameLogger.logPlayerAction("Audio mute toggled: " + muted);
     }
 
-    /**
-     * Activates the custom Slow Motion feature (halves ball speed to 0.5x for 5.0 seconds).
-     */
+
     public boolean triggerSlowMotion() {
         if (gameState.getStatus() != GameStatus.PLAYING) {
             return false;
@@ -255,9 +250,7 @@ public class GameController {
         return activated;
     }
 
-    /**
-     * Activates the Dual Laser Special Attack when off cooldown.
-     */
+    //Laser
     public boolean triggerDualLaser() {
         if (gameState.getStatus() != GameStatus.PLAYING) {
             return false;
@@ -337,13 +330,13 @@ public class GameController {
             }
         }
     }
-
+//Run 60FPS AnimationTimer.
     public void updateFrame(double deltaTime) {
         if (gameState.getStatus() != GameStatus.PLAYING || deltaTime <= 0.0) {
             return;
         }
 
-        // Update Paddle Velocity from InputHandler
+
         Paddle paddle = gameState.getPaddle();
         if (paddle != null) {
             boolean left = inputHandler.isMovingLeft();
@@ -357,18 +350,17 @@ public class GameController {
             }
         }
 
-        // Update Active Abilities (5-second Slow Motion & Dual Laser timers)
+        //Update Active Abilities
         gameState.getSlowMotionAbility().update(deltaTime, gameState);
         gameState.getDualLaserAbility().update(deltaTime, gameState);
 
-        // Auto-fire Dual Lasers while active (or while firing key held)
+        //Auto fire Dual Lasers
         if (gameState.getDualLaserAbility().isActive()) {
             if (gameState.getDualLaserAbility().fireLasersIfReady(gameState)) {
                 playSoundSafe("laser");
             }
         }
-
-        // Sub-step movement and collision detection to prevent high-speed tunneling
+        //fast ball don't pass through bricks.
         int subSteps = deltaTime > 0.014 ? 2 : 1;
         double subDt = deltaTime / subSteps;
 
@@ -411,7 +403,7 @@ public class GameController {
         gameState.getCapsules().removeIf(capsule -> !capsule.isActive());
         gameState.getVisualEffects().removeIf(fx -> !fx.isActive() || fx.isFinished());
     }
-
+    //remove ball that falls, When all balls gone life -1
     private void checkBallLossAndLives() {
         Iterator<Ball> it = gameState.getBalls().iterator();
         boolean lostAtLeastOneBall = false;
@@ -427,7 +419,7 @@ public class GameController {
             gameState.loseLife();
             GameLogger.logWarning("Ball missed! Remaining lives: " + gameState.getLives());
 
-            if (gameState.getStatus() == GameStatus.GAME_OVER) {
+            if (gameState.getStatus() == GameStatus.GAME_OVER) {//All lives gone=dead
                 playSoundSafe("game_over");
                 GameLogger.logGameEvent("GAME OVER! Final Score: "
                         + gameState.getScoreManager().getCurrentScore()
@@ -446,7 +438,7 @@ public class GameController {
             }
         }
     }
-
+    //When gameState.areAllBricksCleared() is true pause gameplay
     private void checkStageCompletion() {
         if (gameState.getStatus() != GameStatus.PLAYING || !gameState.areAllBricksCleared()) {
             return;

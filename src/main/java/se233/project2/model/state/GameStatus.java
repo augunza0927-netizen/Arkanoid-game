@@ -1,8 +1,6 @@
 package se233.project2.model.state;
 
-/**
- * High-level lifecycle states of a game run.
- */
+
 public enum GameStatus {
     MENU,
     PLAYING,

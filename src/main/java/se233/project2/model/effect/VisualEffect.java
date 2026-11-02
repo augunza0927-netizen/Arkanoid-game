@@ -2,10 +2,7 @@ package se233.project2.model.effect;
 
 import se233.project2.model.entity.GameObject;
 
-/**
- * Abstract base class for transient visual animations in the playfield
- * (brick hit/destruction shatter, ball bounce sparks, floating score popups).
- */
+
 public abstract class VisualEffect extends GameObject {
 
     protected double elapsedSeconds;

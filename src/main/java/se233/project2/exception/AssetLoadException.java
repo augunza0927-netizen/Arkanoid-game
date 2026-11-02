@@ -1,12 +1,9 @@
 package se233.project2.exception;
 
-/**
- * Custom exception thrown when sprite sheets, audio files, or stage layout
- * resources are missing, corrupted, or unreadable.
- */
+
 public class AssetLoadException extends GameException {
 
-    private final String resourcePath;
+    private final String resourcePath;//Store rsp to assetmanager/SpriteSheet
 
     public AssetLoadException(String resourcePath, String message) {
         super(message);

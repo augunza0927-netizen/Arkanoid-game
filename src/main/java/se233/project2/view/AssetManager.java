@@ -12,12 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Centralized pure-JavaFX asset registry responsible for loading, slicing, and caching
- * sprite sheets ({@code PlayArea.jpg}, {@code Paddle_Ball_SpecialAttack.jpg},
- * {@code Bricks_Damage.jpg}, {@code Upgrade_Capsule_HUDUI.jpg}) and {@link AudioClip} sounds.
- * Throws {@link AssetLoadException} when required resources cannot be loaded.
- */
+
 public class AssetManager {
 
     private static final String SPRITE_BASE = "/se233/project2/assets/sprites/";
@@ -68,9 +63,7 @@ public class AssetManager {
         GameLogger.logGameEvent("All sprite sheets sliced and cached successfully.");
     }
 
-    /**
-     * Loads a classpath image resource or throws {@link AssetLoadException} if missing/corrupt.
-     */
+
     public Image loadImageResource(String resourcePath) {
         if (resourcePath == null || resourcePath.isBlank()) {
             throw new AssetLoadException(String.valueOf(resourcePath), "Resource path must not be null or blank");
@@ -92,7 +85,7 @@ public class AssetManager {
         }
     }
 
-    private void sliceBricksSheet(SpriteSheet sheet) {
+    private void sliceBricksSheet(SpriteSheet sheet) { //bricks damage
         int[] colX = {72, 400, 718, 1044, 1372, 1690};
         int[] colW = {287, 286, 286, 287, 277, 286};
         int[] rowY = {144, 440, 758};
@@ -104,7 +97,7 @@ public class AssetManager {
             }
         }
 
-        // Shatter Frame 1 (Row 3) & Shatter Frame 2 (Row 4)
+        // Shatter Frame
         int[][] r3 = {
                 {72, 1126, 287, 165}, {400, 1126, 286, 185}, {718, 1086, 286, 245},
                 {1044, 1076, 287, 276}, {1362, 1065, 297, 297}, {1688, 1054, 288, 308}
@@ -120,13 +113,13 @@ public class AssetManager {
     }
 
     private void slicePaddleBallSheet(SpriteSheet sheet) {
-        // Paddles: compact blue, standard blue, wide green, and armed dual-laser paddle
+        //Paddles
         paddleSprites[0] = sheet.getSprite(646, 134, 265, 111);
         paddleSprites[1] = sheet.getSprite(554, 400, 439, 112);
         paddleSprites[2] = sheet.getSprite(1056, 400, 439, 112);
         laserPaddleSprite = sheet.getSprite(544, 666, 460, 163);
 
-        // Separated Ball Move vs. Ball Bounce Animation Sprites (Rubric: Sprite Sheet 2 pts)
+        //Separated Ball Move/Ball Bounce Animation Sprites
         normalBallMoveAnim = new AnimationSprite(List.of(
                 sheet.getSprite(74, 1024, 172, 163),
                 sheet.getSprite(72, 1280, 174, 163)
@@ -147,7 +140,7 @@ public class AssetManager {
                 sheet.getParticleSprite(594, 1269, 246, 176)
         ), 0.08);
 
-        // Single Laser Beam & Impact Spark frames
+
         laserBeamSprite = sheet.getParticleSprite(112, 1586, 65, 320);
 
         sparkFrames.clear();
@@ -156,7 +149,7 @@ public class AssetManager {
         sparkFrames.add(sheet.getParticleSprite(686, 1607, 113, 135));
         sparkFrames.add(sheet.getParticleSprite(1586, 1596, 124, 145));
     }
-
+//upgrade capsule
     private void sliceUiAndUpgradeSheet(SpriteSheet sheet) {
         int[][] cards = {
                 {68, 134, 291, 435}, {394, 134, 289, 435}, {718, 134, 289, 435},

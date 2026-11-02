@@ -3,10 +3,7 @@ package se233.project2.model.entity;
 import javafx.geometry.Rectangle2D;
 import se233.project2.util.GameConfig;
 
-/**
- * Player-controlled paddle entity.
- * Supports dynamic width upgrades, movement speed scaling, and dual-laser special attack mode.
- */
+
 public class Paddle extends GameObject implements Movable, Collidable {
 
     private double velocityX;
@@ -72,9 +69,6 @@ public class Paddle extends GameObject implements Movable, Collidable {
         this.velocityX = 0.0;
     }
 
-    /**
-     * Returns visual sprite size tier: 0 = compact, 1 = standard, 2 = expanded.
-     */
     public int getSizeTier() {
         if (width < 92.0) {
             return 0;

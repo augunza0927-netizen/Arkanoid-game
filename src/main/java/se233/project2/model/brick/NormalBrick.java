@@ -1,9 +1,6 @@
 package se233.project2.model.brick;
 
-/**
- * Standard 1-hit brick destroyed immediately upon ball or laser impact.
- * Uses Red (col 0) or Green (col 2) sprites from Bricks_Damage.jpg.
- */
+
 public class NormalBrick extends Brick {
 
     public NormalBrick(double x, double y, double width, double height) {

@@ -10,11 +10,6 @@ import se233.project2.exception.AssetLoadException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-/**
- * Pure JavaFX sprite sheet utility using {@link Image}, {@link PixelReader},
- * and {@link WritableImage} (zero AWT/Swing dependencies) to extract sub-sprites
- * and remove solid JPG backgrounds cleanly via edge-seeded flood-fill or chroma-keying.
- */
 public class SpriteSheet {
 
     private final Image sourceImage;
@@ -41,10 +36,7 @@ public class SpriteSheet {
         this.bgB = argb & 0xFF;
     }
 
-    /**
-     * Extracts an enclosed sprite (bricks, paddles, cards, capsules, hearts) using
-     * border-seeded flood-fill background removal so interior grey/silver shading is never lost.
-     */
+
     public WritableImage getSprite(int x, int y, int width, int height) {
         int pad = 2;
         int imgW = (int) sourceImage.getWidth();
@@ -116,10 +108,7 @@ public class SpriteSheet {
         return out;
     }
 
-    /**
-     * Extracts multi-fragment or glowing particle sprites (shattering bricks, laser beams,
-     * impact sparks, glowing balls) using chroma-keying with soft edge alpha blending.
-     */
+    //use chroma key, balls,laser,bricks
     public WritableImage getParticleSprite(int x, int y, int width, int height) {
         int imgW = (int) sourceImage.getWidth();
         int imgH = (int) sourceImage.getHeight();

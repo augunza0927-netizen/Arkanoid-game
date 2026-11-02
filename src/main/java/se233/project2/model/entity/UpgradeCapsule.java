@@ -3,10 +3,7 @@ package se233.project2.model.entity;
 import javafx.geometry.Rectangle2D;
 import se233.project2.util.GameConfig;
 
-/**
- * Falling collectible capsule dropped from destroyed bricks during gameplay
- * (e.g., temporary Dual Laser activation, Slow Motion refresh, multi-ball, extra life).
- */
+
 public class UpgradeCapsule extends GameObject implements Movable, Collidable {
 
     public enum CapsuleKind {

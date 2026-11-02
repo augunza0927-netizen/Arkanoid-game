@@ -3,9 +3,7 @@ package se233.project2.model.upgrade;
 import se233.project2.model.state.GameState;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade that expands the player's paddle width (Card Sprite Index 1 - Wide Paddle).
- */
+
 public class PaddleSizeUpgrade extends Upgrade {
 
     public PaddleSizeUpgrade() {

@@ -3,11 +3,7 @@ package se233.project2.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * Multi-level logging utility backed by Apache Log4j 2.
- * Logs player actions, game events, scoring calculations, warnings,
- * and exceptions at distinct log levels (TRACE, DEBUG, INFO, WARN, ERROR).
- */
+
 public final class GameLogger {
 
     private static final Logger LOGGER = LogManager.getLogger(GameLogger.class);

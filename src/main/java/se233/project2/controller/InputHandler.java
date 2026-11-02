@@ -8,17 +8,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-/**
- * Pure JavaFX keyboard event handler.
- * Tracks held movement keys and dispatches single-press action triggers
- * (ball launch, Dual Laser activation, 5-second Slow Motion button, pause, card selection).
- */
+
 public class InputHandler {
 
     private final Set<KeyCode> activeKeys = new HashSet<>();
     private Consumer<KeyCode> onKeyTriggered;
 
-    public void attachToScene(Scene scene) {
+    public void attachToScene(Scene scene) {//Tracks movement buttons
         if (scene == null) {
             return;
         }

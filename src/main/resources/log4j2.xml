@@ -11,7 +11,7 @@
     </Appenders>
 
     <Loggers>
-        <!-- Multi-level Application Logger: TRACE, DEBUG, INFO, WARN, ERROR -->
+        <!-- TRACE, DEBUG, INFO, WARN, ERROR -->
         <Logger name="se233.project2" level="TRACE" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="FileAppender"/>

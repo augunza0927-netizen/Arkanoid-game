@@ -5,10 +5,7 @@ import se233.project2.model.entity.Collidable;
 import se233.project2.model.entity.Damageable;
 import se233.project2.model.entity.GameObject;
 
-/**
- * Abstract base class for all brick variants.
- * Demonstrates polymorphism across brick types (Normal, Strong, Bonus, Special).
- */
+
 public abstract class Brick extends GameObject implements Collidable, Damageable {
 
     protected final BrickType brickType;
@@ -43,9 +40,6 @@ public abstract class Brick extends GameObject implements Collidable, Damageable
         return false;
     }
 
-    /**
-     * Maps current durability to crack sprite row in Bricks_Damage.jpg (0 = intact, 1 = cracked, 2 = heavily cracked).
-     */
     public int getDamageSpriteRow() {
         if (maxHitPoints <= 1 || hitPoints >= maxHitPoints) {
             return 0;
@@ -70,6 +64,7 @@ public abstract class Brick extends GameObject implements Collidable, Damageable
         return hitFlashTimer > 0.0;
     }
 
+    //Hit Flash Overlay
     @Override
     public void takeDamage(int amount) {
         if (amount <= 0 || isDestroyed()) {

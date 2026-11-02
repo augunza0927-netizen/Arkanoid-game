@@ -13,10 +13,7 @@ import se233.project2.util.GameConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for score calculation, multipliers, losing lives, multi-ball survival,
- * stage clear, and Game Over transitions (Rubric: Testing - 2 points).
- */
+
 class ScoringAndLivesTest {
 
     private GameState state;
@@ -55,12 +52,12 @@ class ScoringAndLivesTest {
     void testLoseLifeMultiBallAndGameOver() {
         assertEquals(GameConfig.INITIAL_LIVES, state.getLives());
 
-        // Launch primary ball and add a second active ball
+        // Launch ball
         controller.launchDockedBalls();
         Ball secondBall = state.spawnExtraActiveBall(-25.0);
         assertEquals(2, state.getBalls().size());
 
-        // Drop only the first ball below PLAY_BOTTOM -> life must NOT decrease yet
+        // Drop only the first ball
         Ball firstBall = state.getBalls().get(0);
         firstBall.setY(GameConfig.PLAY_BOTTOM + 20.0);
         secondBall.setY(300.0);
@@ -69,7 +66,7 @@ class ScoringAndLivesTest {
         assertEquals(GameConfig.INITIAL_LIVES, state.getLives(), "Life should not be lost while another ball remains in play");
         assertEquals(1, state.getBalls().size());
 
-        // Drop the remaining ball 3 times to reach 0 lives and GAME_OVER
+        //Game over
         for (int expectedLives = GameConfig.INITIAL_LIVES - 1; expectedLives >= 0; expectedLives--) {
             controller.launchDockedBalls();
             for (Ball b : state.getBalls()) {
@@ -94,7 +91,7 @@ class ScoringAndLivesTest {
         controller.updateFrame(0.016);
         assertEquals(GameStatus.UPGRADE_SELECTION, state.getStatus(), "Clearing stage 1 should pause for upgrade selection");
 
-        // Advance to final stage and clear all bricks -> VICTORY
+
         controller.loadStage(GameConfig.TOTAL_STAGES);
         state.getBricks().forEach(b -> b.onHit(10));
         controller.updateFrame(0.016);

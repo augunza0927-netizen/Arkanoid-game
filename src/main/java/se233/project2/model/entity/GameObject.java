@@ -2,10 +2,7 @@ package se233.project2.model.entity;
 
 import javafx.geometry.Rectangle2D;
 
-/**
- * Abstract root base class for all spatial 2D entities in the play area.
- * Demonstrates OOP inheritance and encapsulation of spatial coordinates and dimensions.
- */
+
 public abstract class GameObject {
 
     protected double x;
@@ -14,6 +11,7 @@ public abstract class GameObject {
     protected double height;
     protected boolean active;
 
+    //oo
     protected GameObject(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;

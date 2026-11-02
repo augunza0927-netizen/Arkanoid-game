@@ -2,10 +2,7 @@ package se233.project2.model.ability;
 
 import se233.project2.model.state.GameState;
 
-/**
- * Abstract base class representing a timed player ability with active duration and cooldown.
- * Demonstrates OOP inheritance and polymorphism across active skills (Slow Motion & Dual Laser).
- */
+
 public abstract class ActiveAbility {
 
     protected static final double EPSILON = 1e-7;

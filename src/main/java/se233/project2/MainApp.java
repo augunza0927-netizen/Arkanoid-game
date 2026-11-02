@@ -20,19 +20,14 @@ import se233.project2.view.UpgradeSelectionView;
 
 import java.net.URL;
 
-/**
- * Main pure-JavaFX Application class.
- * Bootstraps the primary Stage, registers the centralized {@link GlobalExceptionHandler},
- * loads sprite sheets and audio assets, wires Model-View-Controller components,
- * and starts the 60-FPS {@code AnimationTimer} game loop.
- */
+
 public class MainApp extends Application {
 
     private GameController gameController;
 
     @Override
-    public void start(Stage primaryStage) {
-        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+    public void start(Stage primaryStage) {//
+        Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());//exception
         GlobalExceptionHandler.setShowUiAlerts(true);
 
         try {
@@ -76,6 +71,7 @@ public class MainApp extends Application {
             );
             gameController.getInputHandler().attachToScene(scene);
 
+            //Load assets
             primaryStage.setTitle(GameConfig.GAME_TITLE);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);

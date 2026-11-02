@@ -7,11 +7,7 @@ import se233.project2.model.state.GameState;
 import se233.project2.util.GameConfig;
 import se233.project2.util.GameLogger;
 
-/**
- * Special Attack ("Sprite Sheet" Rubric - 2 points):
- * Equips the paddle with dual laser cannons for a specific duration, allowing
- * the player to shoot twin laser beams upward to damage/destroy bricks.
- */
+
 public class DualLaserAbility extends ActiveAbility {
 
     private double fireIntervalTimer = 0.0;
@@ -36,9 +32,6 @@ public class DualLaserAbility extends ActiveAbility {
         return true;
     }
 
-    /**
-     * Immediately activates or extends Dual Laser (e.g., from a red Laser Capsule or Upgrade).
-     */
     public void forceActivate(GameState state, double durationSeconds) {
         if (state == null) {
             return;
@@ -54,13 +47,10 @@ public class DualLaserAbility extends ActiveAbility {
         this.remainingCooldown = 0.0;
         this.fireIntervalTimer = 0.0;
         if (state.getPaddle() != null) {
-            state.getPaddle().setLaserEquipped(true);
+            state.getPaddle().setLaserEquipped(true); //Switch to Laser
         }
     }
 
-    /**
-     * Fires twin laser projectiles from the left and right cannons of the paddle if ready.
-     */
     public boolean fireLasersIfReady(GameState state) {
         if (!active || state == null || state.getPaddle() == null || fireIntervalTimer > EPSILON) {
             return false;

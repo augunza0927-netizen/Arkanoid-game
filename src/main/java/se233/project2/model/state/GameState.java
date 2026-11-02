@@ -13,14 +13,11 @@ import se233.project2.util.GameConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Central aggregate model holding the entire state of the current roguelike run.
- * Demonstrates OOP composition and aggregation across entities, abilities, and score state.
- */
+
 public class GameState {
 
     private GameStatus status = GameStatus.MENU;
-    private int lives = GameConfig.INITIAL_LIVES;
+    private int lives = GameConfig.INITIAL_LIVES;//resets score
     private int currentStageNumber = 1;
     private String currentStageName = "Stage 1";
 
@@ -49,6 +46,7 @@ public class GameState {
         );
     }
 
+    //Reset lives to 3/LIVES
     public void resetForNewRun() {
         this.status = GameStatus.PLAYING;
         this.lives = GameConfig.INITIAL_LIVES;

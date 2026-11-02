@@ -21,10 +21,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for roguelike upgrade selection and stat modifications
- * across stages (Rubric: Testing - 2 points).
- */
+
 class UpgradeSystemTest {
 
     private GameState state;
@@ -59,37 +56,37 @@ class UpgradeSystemTest {
         double initialSpeed = state.getPaddle().getMoveSpeed();
         int initialLives = state.getLives();
 
-        // 1. Expand Paddle
+        //Expand Paddle
         upgradeManager.applyUpgrade(new PaddleSizeUpgrade(), state);
         assertTrue(state.getPaddle().getWidth() > initialWidth);
 
-        // 2. Chrono Thrusters (Paddle speed + reduced Slow-Mo cooldown)
+        //Chrono
         double initialSlowCooldown = state.getSlowMotionAbility().getCooldownSeconds();
         upgradeManager.applyUpgrade(new PaddleSpeedUpgrade(), state);
         assertTrue(state.getPaddle().getMoveSpeed() > initialSpeed);
         assertTrue(state.getSlowMotionAbility().getCooldownSeconds() < initialSlowCooldown);
 
-        // 3. Extra Life
+        //Extra Life
         upgradeManager.applyUpgrade(new ExtraLifeUpgrade(), state);
         assertEquals(initialLives + 1, state.getLives());
 
-        // 4. Score Multiplier + Dual Laser Overdrive
+        //x2 score
         upgradeManager.applyUpgrade(new ScoreMultiplierUpgrade(), state);
         assertEquals(1.5, state.getScoreManager().getScoreMultiplier(), 0.001);
         assertTrue(state.getDualLaserAbility().isActive());
 
-        // 5. Piercing Ball
+        //Piercing Ball
         upgradeManager.applyUpgrade(new PiercingBallUpgrade(), state);
         assertTrue(state.isPersistentPiercing());
         assertTrue(state.getBalls().get(0).isPiercing());
 
-        // 6. Multi-Ball Split + advance to Stage 2
+        //Multi-Ball Split
         controller.selectUpgradeAndAdvance(new MultiBallUpgrade());
         assertEquals(2, state.getCurrentStageNumber(), "Selecting upgrade must advance to Stage 2");
         assertEquals(1, state.getExtraStartingBalls());
         assertTrue(state.getBalls().get(0).isPiercing(), "Piercing upgrade must persist into Stage 2");
 
-        // Launching on Stage 2 spawns primary + 1 extra ball = 2 active balls
+        //Launching on Stage 2
         controller.launchDockedBalls();
         assertEquals(2, state.getBalls().size(), "MultiBallUpgrade must launch extra ball on Stage 2");
         controller.shutdown();

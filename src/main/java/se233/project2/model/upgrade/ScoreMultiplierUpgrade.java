@@ -4,9 +4,7 @@ import se233.project2.model.state.GameState;
 import se233.project2.util.GameConfig;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade increasing points earned from bricks and charging Dual Laser (Card Sprite Index 3 - Laser/Amp).
- */
+
 public class ScoreMultiplierUpgrade extends Upgrade {
 
     public ScoreMultiplierUpgrade() {

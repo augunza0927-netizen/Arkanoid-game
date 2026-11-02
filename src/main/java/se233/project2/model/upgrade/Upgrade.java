@@ -3,10 +3,7 @@ package se233.project2.model.upgrade;
 import se233.project2.exception.InvalidGameStateException;
 import se233.project2.model.state.GameState;
 
-/**
- * Abstract base class representing a selectable roguelike upgrade card (Strategy Pattern).
- * Concrete subclasses apply permanent or run-scoped gameplay modifications to {@link GameState}.
- */
+
 public abstract class Upgrade {
 
     private final UpgradeType type;
@@ -14,6 +11,7 @@ public abstract class Upgrade {
     private final String description;
     private final int cardSpriteIndex;
 
+    //Inherited
     protected Upgrade(UpgradeType type, String title, String description, int cardSpriteIndex) {
         this.type = type;
         this.title = title;

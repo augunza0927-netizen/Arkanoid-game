@@ -3,9 +3,7 @@ package se233.project2.model.upgrade;
 import se233.project2.model.state.GameState;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade that adds an additional starting/split ball (Card Sprite Index 2 - Multi-Ball).
- */
+
 public class MultiBallUpgrade extends Upgrade {
 
     public MultiBallUpgrade() {

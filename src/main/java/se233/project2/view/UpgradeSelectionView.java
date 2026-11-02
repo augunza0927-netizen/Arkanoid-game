@@ -19,10 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
- * Pure JavaFX Roguelike Upgrade Selection overlay presented between stages
- * (Use Case 3.3: Complete Stage and Choose Upgrade).
- */
+
 public class UpgradeSelectionView extends StackPane {
 
     private final Label headerLabel = new Label("STAGE CLEARED!");
@@ -64,6 +61,7 @@ public class UpgradeSelectionView extends StackPane {
         this.assetManager = assetManager;
     }
 
+    //display cards
     public void displayChoices(List<Upgrade> choices, Consumer<Upgrade> onUpgradeSelected) {
         this.currentChoices = choices != null ? new ArrayList<>(choices) : List.of();
         this.selectionCallback = onUpgradeSelected;

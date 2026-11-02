@@ -2,9 +2,7 @@ package se233.project2.model.state;
 
 import se233.project2.model.brick.BrickType;
 
-/**
- * Encapsulates configuration and brick layout blueprint for an individual stage.
- */
+
 public class StageConfig {
 
     private final int stageNumber;

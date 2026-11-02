@@ -6,11 +6,7 @@ import se233.project2.model.state.GameState;
 import se233.project2.util.GameConfig;
 import se233.project2.util.GameLogger;
 
-/**
- * Custom Additional Feature ("Stunning Feature" Rubric):
- * Triggered by a keyboard button press (SHIFT or S, or HUD button) to halve
- * ball movement speed (0.5x) for exactly 5.0 seconds before restoring normal speed.
- */
+
 public class SlowMotionAbility extends ActiveAbility {
 
     private final double speedFactor;
@@ -40,9 +36,7 @@ public class SlowMotionAbility extends ActiveAbility {
         return true;
     }
 
-    /**
-     * Used by collectible Hourglass capsules to instantly refresh or extend Slow Motion.
-     */
+
     public void grantCapsuleCharge(GameState state) {
         if (state == null) {
             return;

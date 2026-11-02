@@ -4,9 +4,7 @@ import se233.project2.model.entity.Ball;
 import se233.project2.model.state.GameState;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade allowing balls to pierce straight through destroyed bricks (Card Sprite Index 5 - Pierce).
- */
+
 public class PiercingBallUpgrade extends Upgrade {
 
     public PiercingBallUpgrade() {

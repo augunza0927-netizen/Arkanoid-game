@@ -13,9 +13,6 @@ import se233.project2.util.GameConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Builds and loads multi-stage brick arrangements and difficulty progression configs.
- */
 public class StageLoader {
 
     private static final int COLS = 8;
@@ -80,6 +77,7 @@ public class StageLoader {
         };
     }
 
+    //Define state
     public List<Brick> instantiateBricks(StageConfig config) {
         if (config == null || config.getBrickGrid() == null) {
             throw new InvalidGameStateException("StageConfig or brickGrid must not be null");

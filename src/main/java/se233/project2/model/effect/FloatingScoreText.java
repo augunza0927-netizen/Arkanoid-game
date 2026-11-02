@@ -1,9 +1,6 @@
 package se233.project2.model.effect;
 
-/**
- * Floating score popup text (e.g., "+100") displayed at the brick's position when hit/destroyed.
- * Satisfies the "Display score" rubric item alongside HUD live score updates.
- */
+
 public class FloatingScoreText extends VisualEffect {
 
     private final String text;

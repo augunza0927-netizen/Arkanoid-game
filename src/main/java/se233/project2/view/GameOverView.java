@@ -14,10 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import se233.project2.util.GameConfig;
 
-/**
- * Pure JavaFX Game Over and Victory completion feedback overlay
- * (Use Case 3.4: Lose Life / Game Over).
- */
+
 public class GameOverView extends StackPane {
 
     private final VBox modalBox = new VBox(18);
@@ -62,6 +59,7 @@ public class GameOverView extends StackPane {
         getChildren().add(modalBox);
     }
 
+    //cleary 5 stages=victory
     public void showResult(boolean victory, int finalScore, int stageReached) {
         String accent = victory ? "#ffd166" : "#ff4d6d";
         modalBox.setStyle("-fx-background-color: rgba(18, 20, 42, 0.96);"
@@ -73,7 +71,7 @@ public class GameOverView extends StackPane {
         glow.setRadius(18);
         bannerLabel.setEffect(glow);
 
-        if (victory) {
+        if (victory) {//GameStatus.VICTORY
             bannerLabel.setText("VICTORY!");
             bannerLabel.setTextFill(Color.web("#ffd166"));
             subtitleLabel.setText("All " + GameConfig.TOTAL_STAGES + " Cyber Fortresses Cleared — Master Run Complete!");

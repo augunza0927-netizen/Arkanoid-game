@@ -17,10 +17,7 @@ import se233.project2.util.GameConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Unit tests for game actions: paddle controls, ball bouncing physics, separated
- * MOVING vs BOUNCING sprite actions, brick durability, piercing balls, and Dual Laser hits.
- */
+//Test Moving vs Bouncing
 class BallBrickCollisionTest {
 
     private GameState state;
@@ -62,16 +59,16 @@ class BallBrickCollisionTest {
 
         assertEquals(Ball.AnimationAction.MOVING, ball.getCurrentAction());
 
-        // Left wall bounce switches ball to BOUNCING action and reverses X velocity
+
         collisionManager.processCollisions(state);
         assertTrue(ball.getVelocityX() > 0, "Velocity X should reflect rightward");
         assertEquals(Ball.AnimationAction.BOUNCING, ball.getCurrentAction(), "Bounce must trigger BOUNCING action");
 
-        // After 0.25s without further impacts, action returns to MOVING
+
         ball.update(0.25);
         assertEquals(Ball.AnimationAction.MOVING, ball.getCurrentAction(), "Ball should return to MOVING action");
 
-        // Paddle bounce deflects upward based on hit position
+
         Paddle paddle = state.getPaddle();
         ball.setX(paddle.getCenterX() + 20.0);
         ball.setY(paddle.getY() - ball.getHeight() + 3.0);
@@ -97,7 +94,7 @@ class BallBrickCollisionTest {
         state.getBricks().add(special);
         state.getBricks().add(neighbor);
 
-        // 1. Normal brick destroys in 1 hit
+        //Normal brick destroys in 1 hit
         Ball ball = new Ball(210, 220, GameConfig.BALL_SIZE);
         ball.setDockedToPaddle(false);
         ball.setVelocityX(0);
@@ -108,7 +105,7 @@ class BallBrickCollisionTest {
         assertTrue(normal.isDestroyed(), "NormalBrick must destroy in 1 hit");
         assertTrue(ball.getVelocityY() > 0, "Non-piercing ball must bounce back from NormalBrick");
 
-        // 2. Strong 3-HP brick progresses through crack rows 0 -> 1 -> 2 -> destroyed
+        // Strong Brick
         assertEquals(0, strong.getDamageSpriteRow());
         strong.onHit(1);
         assertFalse(strong.isDestroyed());
@@ -119,7 +116,7 @@ class BallBrickCollisionTest {
         strong.onHit(1);
         assertTrue(strong.isDestroyed());
 
-        // 3. SpecialBrick destruction triggers area shockwave destroying adjacent 1-HP neighbor
+        //Special Bricks
         special.onHit(1);
         assertFalse(special.isDestroyed());
         LaserProjectile laser = new LaserProjectile(215, 310, 8, 26, 1);

@@ -4,10 +4,7 @@ import javafx.scene.image.Image;
 
 import java.util.List;
 
-/**
- * Pure JavaFX frame-based sprite animation helper for separated ball move/bounce
- * animations, progressive brick cracking/shattering, and special attack effects.
- */
+
 public class AnimationSprite {
 
     private final List<Image> frames;

@@ -22,11 +22,7 @@ import se233.project2.util.GameConfig;
 
 import java.util.List;
 
-/**
- * Pure JavaFX {@link Canvas} responsible for rendering the 2D play area background,
- * paddle, balls (with separated move and bounce sprite actions), bricks, dual-laser beams,
- * falling capsules, visual hit/destroy animations, floating score popups, and Slow Motion feedback.
- */
+
 public class GameCanvas extends Canvas {
 
     private static final Font PROMPT_FONT = Font.font("Consolas", FontWeight.BOLD, 16);
@@ -86,6 +82,7 @@ public class GameCanvas extends Canvas {
         }
     }
 
+    //render flash
     private void renderBricks(GraphicsContext gc, GameState state) {
         for (Brick brick : state.getBricks()) {
             if (!brick.isActive() || brick.isDestroyed()) {
@@ -152,7 +149,7 @@ public class GameCanvas extends Canvas {
         if (paddle == null || !paddle.isActive()) {
             return;
         }
-        Image sprite = assetManager != null
+        Image sprite = assetManager != null //Laser Fire
                 ? assetManager.getPaddleSprite(paddle.getSizeTier(), paddle.isLaserEquipped())
                 : null;
 
@@ -166,6 +163,7 @@ public class GameCanvas extends Canvas {
         }
     }
 
+    //Switch to slowMo
     private void renderBalls(GraphicsContext gc, GameState state) {
         boolean slowMo = state.getSlowMotionAbility().isActive();
 
@@ -174,7 +172,7 @@ public class GameCanvas extends Canvas {
                 continue;
             }
 
-            // Render motion / Slow Motion chrono afterimage trail
+            // RenderSlow Motion chrono
             List<double[]> trail = ball.getTrailPositions();
             if (!ball.isDockedToPaddle() && !trail.isEmpty()) {
                 int n = trail.size();
@@ -193,7 +191,7 @@ public class GameCanvas extends Canvas {
                 }
             }
 
-            // Separated Move vs. Bounce sprite selection
+            //Check ball action/draw ballBounceAim
             Image frame = null;
             double drawScale = 1.0;
             if (assetManager != null) {
@@ -223,7 +221,7 @@ public class GameCanvas extends Canvas {
             }
         }
     }
-
+    //Score
     private void renderVisualEffects(GraphicsContext gc, GameState state) {
         for (VisualEffect effect : state.getVisualEffects()) {
             if (!effect.isActive() || effect.isFinished()) {

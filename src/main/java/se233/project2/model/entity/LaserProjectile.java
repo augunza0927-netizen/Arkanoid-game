@@ -3,9 +3,7 @@ package se233.project2.model.entity;
 import javafx.geometry.Rectangle2D;
 import se233.project2.util.GameConfig;
 
-/**
- * Laser projectile entity fired by the paddle during the Dual Laser special attack.
- */
+//fired laser
 public class LaserProjectile extends GameObject implements Movable, Collidable {
 
     private double velocityY;

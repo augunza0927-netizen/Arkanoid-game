@@ -22,10 +22,7 @@ import se233.project2.util.GameConfig;
 
 import java.util.List;
 
-/**
- * Pure JavaFX heads-up display (HUD) panel showing live score, multiplier, remaining lives,
- * stage progress, Dual Laser special attack status, and the 5-second Slow Motion ability bar.
- */
+
 public class HudPane extends HBox {
 
     private final Label stageTitleLabel = new Label("STAGE 1 / 5");
@@ -36,7 +33,7 @@ public class HudPane extends HBox {
 
     private final HBox heartsBox = new HBox(6);
 
-    // Slow Motion Ability UI (Additional Stunning Feature)
+    // Slow Motion Ability UI
     private final ImageView slowMoIconView = new ImageView();
     private final Label slowMoStateLabel = new Label("READY (0.5x / 5.0s)");
     private final ProgressBar slowMoBar = new ProgressBar(1.0);
@@ -48,7 +45,6 @@ public class HudPane extends HBox {
     private final ProgressBar laserBar = new ProgressBar(1.0);
     private final Button laserTriggerBtn = new Button("DUAL LASER [F]");
 
-    // Applied Roguelike Upgrades display
     private final FlowPane upgradesFlow = new FlowPane(6, 6);
 
     private final Button muteButton = new Button("SOUND: ON");
@@ -72,7 +68,7 @@ public class HudPane extends HBox {
         content.setPrefWidth(GameConfig.HUD_WIDTH);
         HBox.setHgrow(content, Priority.ALWAYS);
 
-        // 1. Header & Stage Card
+       //ALL CARDSSSSS
         VBox stageBox = createPanelCard("#38d9ff");
         stageTitleLabel.setFont(Font.font("Consolas", FontWeight.EXTRA_BOLD, 19));
         stageTitleLabel.setTextFill(Color.web("#64f4ff"));
@@ -80,7 +76,7 @@ public class HudPane extends HBox {
         stageSubLabel.setTextFill(Color.web("#b8c7e0"));
         stageBox.getChildren().addAll(stageTitleLabel, stageSubLabel);
 
-        // 2. Score & Multiplier Card
+
         VBox scoreBox = createPanelCard("#ffd166");
         Label scoreTitle = createSectionCaption("SCORE TELEMETRY", "#ffd166");
         scoreValueLabel.setFont(Font.font("Consolas", FontWeight.EXTRA_BOLD, 30));
@@ -96,13 +92,13 @@ public class HudPane extends HBox {
         subScoreRow.getChildren().addAll(highScoreLabel, spacer, multiplierLabel);
         scoreBox.getChildren().addAll(scoreTitle, scoreValueLabel, subScoreRow);
 
-        // 3. Lives Card
+
         VBox livesBox = createPanelCard("#ff4d6d");
         Label livesTitle = createSectionCaption("HULL INTEGRITY (LIVES)", "#ff758f");
         heartsBox.setAlignment(Pos.CENTER_LEFT);
         livesBox.getChildren().addAll(livesTitle, heartsBox);
 
-        // 4. Slow Motion Ability Card (New Feature)
+
         VBox slowMoBox = createPanelCard("#48f0ff");
         HBox slowHeader = new HBox(8);
         slowHeader.setAlignment(Pos.CENTER_LEFT);
@@ -125,7 +121,7 @@ public class HudPane extends HBox {
         slowMoTriggerBtn.setFocusTraversable(false);
         slowMoBox.getChildren().addAll(slowHeader, slowMoBar, slowMoTriggerBtn);
 
-        // 5. Dual Laser Special Attack Card
+
         VBox laserBox = createPanelCard("#ff6b6b");
         HBox laserHeader = new HBox(8);
         laserHeader.setAlignment(Pos.CENTER_LEFT);
@@ -148,7 +144,7 @@ public class HudPane extends HBox {
         laserTriggerBtn.setFocusTraversable(false);
         laserBox.getChildren().addAll(laserHeader, laserBar, laserTriggerBtn);
 
-        // 6. Active Roguelike Upgrades Card
+
         VBox upgradesBox = createPanelCard("#9b5de5");
         Label upgTitle = createSectionCaption("ROGUELIKE UPGRADES", "#c77dff");
         upgradesFlow.setPrefWrapLength(300);
@@ -156,7 +152,7 @@ public class HudPane extends HBox {
         upgradesFlow.getChildren().add(noneLabel);
         upgradesBox.getChildren().addAll(upgTitle, upgradesFlow);
 
-        // 7. Controls Legend & Footer Buttons
+
         Label controlsHint = new Label(
                 "Move: [A/D] or [←/→]  |  Launch/Fire: [SPACE / W]\n"
                 + "Slow-Mo (0.5x 5s): [SHIFT / S]  |  Laser: [F]"
@@ -243,7 +239,7 @@ public class HudPane extends HBox {
         stageTitleLabel.setText(String.format("STAGE %d / %d", state.getCurrentStageNumber(), GameConfig.TOTAL_STAGES));
         stageSubLabel.setText(String.format("%s  •  Bricks: %d",
                 state.getCurrentStageName().toUpperCase(), state.getRemainingBrickCount()));
-
+        //update Score
         scoreValueLabel.setText(String.format("%06d", state.getScoreManager().getCurrentScore()));
         highScoreLabel.setText(String.format("HIGH: %06d", state.getScoreManager().getHighScore()));
         multiplierLabel.setText(String.format("MULT: %.1fx", state.getScoreManager().getScoreMultiplier()));

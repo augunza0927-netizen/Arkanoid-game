@@ -4,9 +4,7 @@ import se233.project2.model.state.GameState;
 import se233.project2.util.GameConfig;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade that grants +1 extra life (Card Sprite Index 0 - Heart).
- */
+
 public class ExtraLifeUpgrade extends Upgrade {
 
     public ExtraLifeUpgrade() {

@@ -3,9 +3,7 @@ package se233.project2.model.upgrade;
 import se233.project2.model.state.GameState;
 import se233.project2.util.GameLogger;
 
-/**
- * Roguelike upgrade increasing paddle thruster speed and reducing Slow Motion cooldown (Card Sprite Index 4 - Hourglass).
- */
+
 public class PaddleSpeedUpgrade extends Upgrade {
 
     public PaddleSpeedUpgrade() {

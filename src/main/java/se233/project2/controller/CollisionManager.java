@@ -19,10 +19,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
-/**
- * Resolves 2D collisions between balls, play-area boundaries, paddle, bricks,
- * dual-laser projectiles, and falling upgrade capsules.
- */
+
 public class CollisionManager {
 
     private static final double SPECIAL_BLAST_RADIUS = 78.0;
@@ -42,7 +39,7 @@ public class CollisionManager {
         processCapsuleCollisions(state);
     }
 
-    private void processBallCollisions(GameState state) {
+    private void processBallCollisions(GameState state) {//Bounce ball
         Paddle paddle = state.getPaddle();
 
         for (Ball ball : state.getBalls()) {
@@ -50,7 +47,7 @@ public class CollisionManager {
                 continue;
             }
 
-            // 1. Left, Right, Top Play Area Boundaries
+
             if (ball.getX() <= GameConfig.PLAY_LEFT) {
                 ball.setX(GameConfig.PLAY_LEFT);
                 ball.setVelocityX(Math.abs(ball.getVelocityX()));
@@ -73,14 +70,14 @@ public class CollisionManager {
                 emitSound("bounce");
             }
 
-            // 2. Paddle Deflection
+
             if (paddle != null && paddle.isActive() && ball.getVelocityY() > 0 && ball.intersects(paddle)) {
-                ball.deflectFromPaddle(paddle);
+                ball.deflectFromPaddle(paddle);//bounce
                 spawnSpark(state, ball.getCenterX(), paddle.getY());
                 emitSound("bounce");
             }
 
-            // 3. Brick Collisions
+            //Brick Collisions
             for (Brick brick : state.getBricks()) {
                 if (!brick.isActive() || brick.isDestroyed()) {
                     continue;
@@ -92,7 +89,7 @@ public class CollisionManager {
                     brick.onHit(1);
                     boolean destroyed = brick.isDestroyed();
 
-                    // Resolve bounce reflection unless ball is in Piercing mode and destroyed the brick
+
                     if (!(ball.isPiercing() && destroyed)) {
                         reflectBallFromBrick(ball, ballBox, brickBox);
                     } else {
@@ -101,7 +98,7 @@ public class CollisionManager {
 
                     handleBrickImpactOutcome(state, brick, destroyed, ball.getCenterX(), ball.getCenterY());
 
-                    // Only pierce-through balls can hit multiple bricks on the exact same sub-frame
+
                     if (!ball.isPiercing() || !destroyed) {
                         break;
                     }
@@ -109,7 +106,7 @@ public class CollisionManager {
             }
         }
     }
-
+    //Bounce balls from wall/bricks
     private void reflectBallFromBrick(Ball ball, Rectangle2D ballBox, Rectangle2D brickBox) {
         double overlapLeft = (ballBox.getMaxX()) - brickBox.getMinX();
         double overlapRight = brickBox.getMaxX() - ballBox.getMinX();
@@ -159,11 +156,12 @@ public class CollisionManager {
         }
     }
 
+    //update score
     private void handleBrickImpactOutcome(GameState state, Brick brick, boolean destroyed,
                                           double hitX, double hitY) {
         spawnSpark(state, hitX, hitY);
 
-        if (destroyed) {
+        if (destroyed) {//
             int awarded = state.getScoreManager().awardPoints(brick.getScoreValue());
             state.getVisualEffects().add(new BrickDestroyEffect(
                     brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight(), brick.getColorColumn()));
@@ -173,11 +171,12 @@ public class CollisionManager {
 
             maybeSpawnCapsule(state, brick);
 
+            //special area blast
             if (brick.triggersAreaBlastOnDestroy()) {
                 triggerSpecialAreaBlast(state, brick);
             }
         } else {
-            // Brick was damaged (cracked) — show visual score feedback immediately
+            // Brick was damaged
             int chipAward = state.getScoreManager().awardPoints(25);
             state.getVisualEffects().add(new FloatingScoreText(
                     brick.getCenterX(), brick.getY(), "+" + chipAward, "#90e0ef"));
@@ -293,7 +292,7 @@ public class CollisionManager {
 
     private void spawnSpark(GameState state, double x, double y) {
         state.getVisualEffects().add(new BounceEffect(x, y, 26.0));
-    }
+    }//spawned effect
 
     private void emitSound(String key) {
         if (soundEventCallback != null) {

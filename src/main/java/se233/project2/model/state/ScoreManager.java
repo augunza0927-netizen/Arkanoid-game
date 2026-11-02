@@ -3,10 +3,7 @@ package se233.project2.model.state;
 import se233.project2.exception.InvalidGameStateException;
 import se233.project2.util.GameLogger;
 
-/**
- * Manages player score, score multipliers (upgradable via roguelike cards),
- * and high-score tracking.
- */
+
 public class ScoreManager {
 
     private int currentScore = 0;
@@ -24,7 +21,7 @@ public class ScoreManager {
         if (basePoints == 0) {
             return 0;
         }
-        int awarded = (int) Math.round(basePoints * scoreMultiplier);
+        int awarded = (int) Math.round(basePoints * scoreMultiplier);//
         currentScore += awarded;
         if (currentScore > highScore) {
             highScore = currentScore;
